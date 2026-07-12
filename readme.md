@@ -45,14 +45,17 @@ plugins/BcMdEditor/
 5系（CakePHP 5）の規約に則り、システムに自動ロードされた BcMdEditor ヘルパーをビュー内から直接呼び出します。
 
 ### 固定ページ（例: templates/Pages/default.php などの本文出力エリア）
-
+以下のように既存の`<?php echo $page->contents ?>`をコメントアウトし、呼び出しコードを記述します。
 ```php:利用テーマ/templates/Pages/default.php
-<?= $this->loadHelper('BcMdEditor.BcMdEditor')->parse($page->contents); ?>
+<?php // echo $page->contents ?>
+<?= $this->loadHelper('BcMdEditor.BcMdEditor')->parse($page->contents) ?>
 ```
+テーマ内に固定ページ用ペンプレートファイルが無い場合は、`/vendor/baserproject/bc-front/templates/Pages/default.php`をコピーし`templates/Pages/default.php`に配置します。
 
 ### ブログ詳細画面（例: templates/Blog/default/single.php などの本文出力エリア）
-
+以下のように既存の`<?php $this->BcBaser->blogPostContent($post) ?>`をコメントアウトし、呼び出しコードを記述します。
 ```php:利用テーマ/templates/Blog/default/single.php
+<?php // $this->BcBaser->blogPostContent($post) ?>
 <?= $this->loadHelper('BcMdEditor.BcMdEditor')->parse($post->detail) ?>
 ```
 
