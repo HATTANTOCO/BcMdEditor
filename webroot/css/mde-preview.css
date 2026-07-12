@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/**
+ * BcMdEditor 管理画面用スタイルシート
+ *
+ * - EasyMDE 全画面表示 ＆ サイドバイサイド時の潜り込みバグに対応
+ * - bootsrtap.css のリセット
+ *
+ * @package    BcMdEditor
+ * @subpackage webroot.css
+ * @author     HATTA
+ * @license    MIT License
+ * @link       https://hattantoco.com
+ */
+
+/* 管理画面：EasyMDE 全画面表示 ＆ サイドバイサイド時の潜り込みバグに対応するため */
+.CodeMirror-fullscreen,
+.editor-preview-side {
+    z-index: 999999 !important;
+}
+
+.editor-toolbar.fullscreen {
+    z-index: 999999 !important;
+}
+
+/* bootsrtap.css のリセット */
+.editor-toolbar button {
+  width: fit-content !important;
+}
