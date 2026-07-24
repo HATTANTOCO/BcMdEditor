@@ -58,6 +58,15 @@ plugins/BcMdEditor/
 <?php // $this->BcBaser->blogPostContent($post) ?>
 <?= $this->loadHelper('BcMdEditor.BcMdEditor')->parse($post->detail) ?>
 ```
+あるいは、以下のように条件分岐で記述します。この方がプラグインを無効化した場合でも不慮のエラーが防げます。
+```php:利用テーマ/templates/Blog/default/single.php
+   <?php if (\Cake\Core\Plugin::isLoaded('BcMdEditor')): ?>
+      <?php // --- BcMdEditorプラグインが「有効」な場合：Markdownをパースして出力 --- ?>
+      <?php echo $this->loadHelper('BcMdEditor.BcMdEditor')->parse($post->detail) ?>
+   <?php else: ?>
+      <?php $this->BcBaser->blogPostContent($post) ?>
+   <?php endif; ?>
+```
 
 ## 呼び出しコード（$this->BcMdEditor->parse()）を採用した理由
 baserCMS 4系までの「システムによる自動パース」から、テーマ側で `$this->BcMdEditor->parse()` を明示的に呼び出す設計へと刷新した理由は、baserCMS 5系（CakePHP 5ベース）のアーキテクチャへの適合と安全性（UX）を担保することにあります。
