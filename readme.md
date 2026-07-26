@@ -35,7 +35,7 @@ plugins/BcMdEditor/
 
 ## インストール方法・設定
 1. 本リポジトリをダウンロードし、フォルダ名を BcMdEditor に変更します。
-2. 本プラグインを plugins/BcMdEditor/ ディレクトリへ配置します。
+2. 本プラグインを plugins/BcMdEditor/ の位置へ配置します。
 3. baserCMS 管理画面の「プラグイン管理」を開きます。
 4. 一覧から「BcMdEditor」を選択し、「インストール（有効化）」を実行します。
 5. 「システム基本設定」→「エディタ設定」より、「Markdownエディタ」を選択します。
