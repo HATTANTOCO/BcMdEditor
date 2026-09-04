@@ -1,6 +1,10 @@
-1.0.0
+1.0.1
 
 // Release Notes //
+
+
+[2026-09-05]  BcMdEditor-1.0.1
+プラグイン無効化時のセキュリティトークンエラー（BadRequestException）を修正
 
 [2026-07-12]  BcMdEditor-1.0.0
 - 初版リリース
