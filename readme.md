@@ -50,6 +50,16 @@ plugins/BcMdEditor/
 <?php // echo $page->contents ?>
 <?= $this->loadHelper('BcMdEditor.BcMdEditor')->parse($page->contents) ?>
 ```
+あるいは、以下のように条件分岐で記述します。この方がプラグインを無効化した場合でも不慮のエラーが防げます。
+```php:利用テーマ/templates/Blog/default/single.php
+<?php if (\Cake\Core\Plugin::isLoaded('BcMdEditor')): ?>
+   <?php // --- BcMdEditorプラグインが「有効」な場合：Markdownをパースして出力 --- ?>
+   <?php echo $this->loadHelper('BcMdEditor.BcMdEditor')->parse($page->contents) ?>
+<?php else: ?>
+   <?php echo $page->contents ?>
+<?php endif; ?>
+```
+
 テーマ内に固定ページ用ペンプレートファイルが無い場合は、`/vendor/baserproject/bc-front/templates/Pages/default.php`をコピーし`templates/Pages/default.php`に配置します。
 
 ### ブログ詳細画面（例: templates/Blog/default/single.php などの本文出力エリア）
