@@ -141,7 +141,7 @@ class BcMdEditorHelper extends Helper
         if ($html === '') return '';
 
         // 許可する安全なHTMLタグのホワイトリスト
-        $allowedTags = '<div><span><p><br><hr><h1><h2><h3><h4><h5><h6><a><img><strong><em><b><i><ul><ol><li><pre><code><blockquote><table><thead><tbody><tr><th><td><iframe>';
+        $allowedTags = '<div><span><p><br><hr><h1><h2><h3><h4><h5><h6><a><img><strong><em><b><i><ul><ol><li><pre><code><blockquote><table><thead><tbody><tr><th><td><iframe><style>';
         
         // ホワイトリストに含まれない危険なタグを除去
         $cleaned = strip_tags($html, $allowedTags);
@@ -150,6 +150,13 @@ class BcMdEditorHelper extends Helper
         $dom = new \DOMDocument();
         $htmlWithMeta = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>' . $cleaned . '</body></html>';
         @$dom->loadHTML($htmlWithMeta, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        
+        $iframes = $dom->getElementsByTagName('iframe');
+        foreach ($iframes as $iframe) {
+            if (!$iframe->hasAttribute('sandbox')) {
+                $iframe->setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-forms');
+            }
+        }
 
         $xpath = new \DOMXPath($dom);
         $nodes = $xpath->query('//*');
